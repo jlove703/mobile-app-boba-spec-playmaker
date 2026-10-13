@@ -1,0 +1,1 @@
+Alpha Labs Playmaker Mobile V3.1\nPortrait: active hero center, inactive hero smaller left; solitaire-style used Play stacks beneath each hero; compact discard buttons; two-column hand. Tap used Plays to inspect. Desktop and game logic retained.\nDeploy with index.html at root.\n

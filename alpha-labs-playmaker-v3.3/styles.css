@@ -1,0 +1,291 @@
+:root{--green:#8ee33d;--dark:#06190d;--panel:#0b2815;--line:#2d6b3d;--text:#f6fff7;--muted:#b6cbb9;--danger:#ff7b7b}
+*{box-sizing:border-box}body{margin:0;background:#031108;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}.screen{display:none;min-height:100vh}.screen.active{display:block}.setup-card{width:min(920px,calc(100% - 32px));margin:48px auto;padding:32px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,#0d2c18,#071b0e)}.eyebrow{color:var(--green);font-weight:900;letter-spacing:.12em;font-size:12px}.setup-card h1{font-size:clamp(32px,5vw,56px);margin:4px 0 8px}.sub{color:var(--muted);max-width:720px;line-height:1.55}.players{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:28px 0}.player-upload{padding:20px;border:1px solid var(--line);border-radius:14px;background:#06170c}.player-upload h2{margin-top:0}.player-upload label{display:block;margin:14px 0;color:var(--muted)}input[type=file]{display:block;width:100%;margin-top:7px;padding:10px;border:1px dashed var(--line);border-radius:9px;color:var(--text);background:#031108}.status{font-size:13px;color:var(--muted)}.status.good{color:var(--green)}details{margin:16px 0;color:var(--muted)}code{color:var(--green)}button{min-height:46px;border-radius:10px;padding:0 18px;border:1px solid transparent;font-weight:800;cursor:pointer;margin:6px 6px 0 0}.primary{background:var(--green);color:#0b1b0e}.primary:disabled{opacity:.35;cursor:not-allowed}.secondary{background:#0c2514;color:var(--text);border-color:var(--line)}.error{color:var(--danger);margin-top:10px}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:14px 22px;background:#06190d;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}.stats{display:flex;gap:18px;color:var(--muted)}.stats b{color:var(--text)}.board-wrap{position:relative;width:min(1280px,100%);margin:0 auto;aspect-ratio:1600/975;overflow:hidden;background:#063715}.playmat{width:100%;height:100%;display:block;object-fit:cover}.zones{position:absolute;left:11.1%;right:11.1%;top:12.2%;height:24.5%;display:grid;grid-template-columns:repeat(7,1fr);gap:.25%}.zone{position:relative;border:2px dashed rgba(20,45,18,.45);border-radius:8px;display:flex;align-items:center;justify-content:center;transition:.15s}.zone.dragover{background:rgba(142,227,61,.24);border-color:var(--green)}.zone-label{position:absolute;top:6px;font-size:clamp(8px,1vw,13px);font-weight:900;color:#294623}.instruction{text-align:center;padding:14px;color:var(--muted)}.hand{min-height:180px;display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;padding:8px 20px 18px}.hero{width:112px;aspect-ratio:2.5/3.5;border-radius:10px;border:3px solid rgba(255,255,255,.8);background:linear-gradient(160deg,#193d24,#0a1d10);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:grab;user-select:none;box-shadow:0 8px 18px rgba(0,0,0,.35)}.hero:active{cursor:grabbing}.hero .power{font-size:38px;line-height:1;font-weight:1000}.hero .weapon{font-size:13px;font-weight:900;margin-top:8px;letter-spacing:.06em}.hero.small{width:min(82%,108px);height:auto}.zone .hero{width:76%;max-width:100px}.actions{text-align:center;padding:0 20px 28px}.center{text-align:center}.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:28px 0}.summary-grid>div{border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px}.summary-grid b{font-size:22px;color:var(--green)}.summary-grid span{color:var(--muted)}
+@media(max-width:700px){.players,.summary-grid{grid-template-columns:1fr}.setup-card{margin:20px auto;padding:20px}.topbar{align-items:flex-start;flex-direction:column}.hero{width:88px}.hand{min-height:150px}.zones{top:12.2%;height:24.5%}.zone-label{display:none}}
+.privacy-banner{text-align:center;padding:8px 14px;background:#102b18;color:#c9e9cf;border-bottom:1px solid var(--line);font-size:12px;font-weight:900;letter-spacing:.08em}.handoff-card{margin-top:12vh;max-width:680px}.centered{margin-left:auto;margin-right:auto}.opening-layout{width:min(1180px,calc(100% - 28px));margin:28px auto;display:grid;gap:20px}.tray-panel{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#0c2816,#06170c);padding:20px}.tray-heading{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-bottom:18px}.tray-heading h2{margin:0;font-size:28px}.tray-heading .eyebrow{margin:0 0 3px}.tray-heading>span{color:var(--muted);font-size:13px}.bench,.play-hand{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}.bench .hero{cursor:default}.play-card{width:180px;min-height:250px;border-radius:13px;border:3px solid #aaa;background:linear-gradient(160deg,#554a80,#2a2348);padding:13px;display:flex;flex-direction:column;box-shadow:0 8px 18px rgba(0,0,0,.35)}.play-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;text-transform:uppercase;font-size:14px}.play-top strong{max-width:125px}.cost{display:flex;align-items:baseline;gap:2px;font-size:24px;font-weight:1000}.cost small{font-size:8px}.play-effect{margin:auto 0;padding:16px 4px;text-align:center;font-weight:800;line-height:1.3}.play-footer{margin-top:auto;border-top:1px solid rgba(255,255,255,.25);padding-top:8px;text-align:center;font-size:10px;font-weight:1000;letter-spacing:.15em}.next-box{border:1px solid var(--line);background:#06170c;border-radius:12px;padding:14px;margin:20px auto;max-width:680px;color:var(--muted)}
+@media(max-width:700px){.tray-heading{align-items:flex-start;flex-direction:column}.play-card{width:145px;min-height:215px}.play-top strong{max-width:95px}.play-effect{font-size:13px}.handoff-card{margin-top:40px}}
+/* V2.1: compact no-scroll Arena placement */
+#placement.screen.active{height:100vh;min-height:0;overflow:hidden;display:flex;flex-direction:column}
+#placement .topbar{position:relative;flex:0 0 auto;padding:8px 16px;font-size:14px}
+#placement .privacy-banner{flex:0 0 auto;padding:5px 10px;font-size:10px}
+#placement .board-wrap{flex:1 1 auto;min-height:0;width:min(1120px,100%);margin:0 auto;aspect-ratio:auto;background:#063715}
+#placement .playmat{object-fit:contain}
+#placement .zones{left:11.1%;right:11.1%;top:12.2%;height:24.5%}
+#placement .placement-dock{flex:0 0 auto;background:#031108;border-top:1px solid var(--line);padding:4px 10px 8px}
+#placement .instruction{padding:3px 8px;font-size:11px}
+#placement .hand{min-height:0;height:112px;flex-wrap:nowrap;padding:3px 8px 5px;gap:8px}
+#placement .hand .hero{width:70px;height:98px;flex:0 0 auto}
+#placement .hand .hero .power{font-size:28px}
+#placement .hand .hero .weapon{font-size:10px;margin-top:5px}
+#placement .actions{padding:0;text-align:center}
+#placement .actions button{min-height:36px;padding:0 14px;margin-top:2px;font-size:12px}
+@media(max-width:700px){#placement .stats{gap:8px;font-size:11px;flex-wrap:wrap}#placement .hand{height:90px;overflow-x:auto;justify-content:flex-start}#placement .hand .hero{width:58px;height:81px}#placement .hand .hero .power{font-size:23px}#placement .instruction{font-size:10px}}
+/* V3 Battle screen + right-side battle tracker */
+#battle.screen.active{display:block;min-height:100vh;background:#031108}
+.battle-shell{display:grid;grid-template-columns:minmax(0,1fr) 220px;min-height:100vh}
+.battle-main{min-width:0;padding:14px 16px 24px}
+.battle-header{display:flex;justify-content:space-between;align-items:center;gap:16px;max-width:1100px;margin:0 auto 10px}.battle-header h1{margin:0;font-size:32px}.battle-header p{margin:2px 0}.dog-strip{display:flex;gap:10px;flex-wrap:wrap}.dog-strip span{background:#0b2815;border:1px solid var(--line);border-radius:10px;padding:8px 12px}.battle-board{position:relative;max-width:1100px;margin:auto;aspect-ratio:1600/975;overflow:hidden}.battle-board .playmat{object-fit:contain}.active-pair{position:absolute;inset:11% 12% auto 12%;height:28%;display:flex;align-items:center;justify-content:center;gap:22px}.battle-card-wrap{text-align:center;font-size:10px;font-weight:900;letter-spacing:.1em}.face-down,.revealed-hero{width:94px;aspect-ratio:2.5/3.5;border-radius:10px;border:3px solid rgba(255,255,255,.8);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(0,0,0,.4)}.face-down{background:repeating-linear-gradient(45deg,#102a18,#102a18 8px,#183c23 8px,#183c23 16px);font-size:38px}.revealed-hero{background:linear-gradient(160deg,#193d24,#0a1d10)}.revealed-hero strong{font-size:34px}.revealed-hero span{font-size:11px;font-weight:900;margin-top:5px}.versus{font-size:22px;font-weight:1000;color:var(--green)}.sub-panel{max-width:1100px;margin:10px auto 0;border:1px solid var(--line);border-radius:14px;background:#071b0e;padding:12px 14px;display:grid;grid-template-columns:minmax(230px,.8fr) minmax(320px,1.4fr);gap:12px 18px;align-items:center}.sub-panel h2{margin:2px 0 4px;font-size:20px}.sub-panel p{margin:2px 0;color:var(--muted);font-size:12px}.sub-bench{display:flex;gap:8px;justify-content:center}.sub-bench .hero{width:62px;height:87px;cursor:pointer;border-width:2px}.sub-bench .hero .power{font-size:25px}.sub-bench .hero .weapon{font-size:9px}.sub-bench .hero.selected{outline:4px solid var(--green);outline-offset:2px}.sub-actions{grid-column:1/-1;text-align:center}.sub-actions button{min-height:38px;font-size:12px}.battle-message{max-width:1100px;margin:10px auto;text-align:center;color:var(--green);font-weight:800}.scoreboard{border-left:1px solid var(--line);background:#06190d;padding:18px 12px}.score-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.score-head h2{margin:2px 0 14px;font-size:20px}.match-score{font-size:22px;display:flex;gap:6px}.score-labels,.score-row{display:grid;grid-template-columns:1fr 42px 42px;align-items:center;text-align:center}.score-labels{font-size:10px;color:var(--muted);text-transform:uppercase;font-weight:900;padding:5px}.score-row{min-height:46px;border-top:1px solid var(--line);border-radius:7px;padding:4px 5px}.score-row.active{background:#102b18;outline:1px solid var(--green)}.score-row .battle-num{text-align:left;font-weight:900}.score-row .mark{font-size:18px}.score-row.future{opacity:.5}.score-key{border-top:1px solid var(--line);margin-top:8px;padding-top:10px;font-size:10px;color:var(--muted)}
+@media(max-width:800px){.battle-shell{grid-template-columns:1fr}.scoreboard{border-left:0;border-top:1px solid var(--line)}.battle-main{padding:10px}.sub-panel{grid-template-columns:1fr}.sub-actions{grid-column:auto}.battle-header{align-items:flex-start;flex-direction:column}.scoreboard{padding-bottom:20px}.score-row{min-height:38px}}
+.generator-panel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 22px;align-items:center;border:1px solid rgba(104,255,96,.28);background:rgba(8,38,15,.55);padding:16px;border-radius:16px;margin:18px 0}.generator-panel h2{margin:.1rem 0 .2rem}.generator-panel .small{font-size:.92rem;margin:0}.generator-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.generator-controls select{background:#0b1510;color:#fff;border:1px solid #44624b;border-radius:10px;padding:10px 12px;min-height:44px}.generator-panel>.status,.generated-preview{grid-column:1/-1}.generated-preview{display:none;max-height:150px;overflow:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:10px}.generated-preview.show{display:block}.power-summary{display:flex;flex-wrap:wrap;gap:7px}.power-chip{padding:5px 8px;border:1px solid rgba(255,255,255,.16);border-radius:999px;font-size:.8rem}.generator-warning{color:#ffd56a}.generator-good{color:#8cff87}@media(max-width:760px){.generator-panel{grid-template-columns:1fr}.generator-controls{justify-content:flex-start}}
+/* V3.2 Play Phase */
+.battle-board{overflow:visible}
+.active-pair{display:none!important}
+.battle-card-wrap.player-hero-drop,.battle-card-wrap.opponent-hero{position:absolute;top:12.3%;width:9.4%;height:24%;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.battle-card-wrap.player-hero-drop{left:11.1%}
+.battle-card-wrap.opponent-hero{left:20.55%;transform:scale(.78);transform-origin:center}
+.battle-card-wrap.player-hero-drop .face-down,.battle-card-wrap.player-hero-drop .revealed-hero,.battle-card-wrap.opponent-hero .face-down,.battle-card-wrap.opponent-hero .revealed-hero{width:78%;height:auto;aspect-ratio:2.5/3.5}
+.battle-card-wrap.player-hero-drop.dragover .revealed-hero{outline:5px solid var(--green);outline-offset:4px;box-shadow:0 0 24px rgba(142,227,61,.8)}
+.battle-play-hand{position:absolute;left:27%;right:27%;bottom:5%;height:36%;display:flex;align-items:flex-end;justify-content:center;gap:8px;z-index:5;pointer-events:none}
+.battle-play-hand .play-card{width:clamp(105px,12vw,150px);min-height:0;height:100%;font-size:11px;padding:9px;cursor:grab;pointer-events:auto;transition:.15s;transform-origin:bottom center}
+.battle-play-hand .play-card:hover{transform:translateY(-10px)}
+.battle-play-hand .play-card .play-top{font-size:11px}.battle-play-hand .play-card .cost{font-size:18px}.battle-play-hand .play-card .play-effect{font-size:10px;padding:8px 2px}.battle-play-hand .play-card .play-footer{font-size:8px}
+.play-phase-help{text-align:center;color:var(--green);font-weight:900;margin:4px auto 8px}
+.battle-bench-panel{border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:16px;background:#071b0e}.battle-bench{display:flex;flex-direction:column;gap:7px}.battle-bench .hero{width:100%;height:74px;aspect-ratio:auto;cursor:default;flex-direction:row;gap:10px}.battle-bench .hero .power{font-size:27px}.battle-bench .hero .weapon{margin-top:0;font-size:10px}
+.score-row .power-score{font-size:13px;font-weight:900}.score-row.active .power-score{color:var(--green)}
+.play-toast{color:var(--green);font-weight:900}
+@media(max-width:900px){.battle-play-hand{left:18%;right:18%;height:30%}.battle-play-hand .play-card{width:110px}.battle-shell{grid-template-columns:minmax(0,1fr) 190px}}
+.turn-controls{max-width:1100px;margin:8px auto 0;text-align:center}.turn-controls button{min-width:210px}.discard-pile-btn{position:absolute;right:12.8%;bottom:16%;width:9%;aspect-ratio:2.5/3.5;border:2px dashed rgba(255,255,255,.55);border-radius:9px;background:rgba(6,25,13,.72);color:#fff;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9px;font-weight:900;letter-spacing:.08em}.discard-pile-btn b{font-size:25px;color:var(--green);margin-top:3px}.game-modal{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:100;display:grid;place-items:center;padding:20px}.game-modal[hidden]{display:none}.modal-card{width:min(920px,96vw);max-height:88vh;overflow:auto;border:1px solid var(--line);border-radius:18px;background:#071b0e;padding:20px}.modal-card h2{margin:2px 0 5px}.choice-cards{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:18px 0}.choice-cards .play-card{width:150px;min-height:220px;cursor:pointer}.choice-cards .play-card:hover{outline:3px solid var(--green)}.modal-actions{text-align:center}.turn-badge{text-align:center;color:var(--green);font-weight:900;margin-bottom:5px}
+
+/* V3.5 full-size battle cards + effect discard workflow */
+.battle-card-wrap.player-hero-drop,.battle-card-wrap.opponent-hero{justify-content:flex-start;padding-top:13px}
+.battle-card-wrap.player-hero-drop .face-down,.battle-card-wrap.player-hero-drop .revealed-hero,.battle-card-wrap.opponent-hero .face-down,.battle-card-wrap.opponent-hero .revealed-hero{width:100%;height:calc(100% - 13px);aspect-ratio:auto;border-radius:7px;box-sizing:border-box}
+.battle-bench .hero{cursor:grab}.battle-bench .hero.pending-discard{outline:2px solid #ffd54a}
+.effect-discard-zone{position:absolute;right:12.2%;bottom:14.5%;width:10.2%;height:25%;border:3px dashed #ffd54a;border-radius:10px;background:rgba(35,24,0,.88);z-index:12;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6px;color:#ffd54a;font-size:10px;font-weight:1000}.effect-discard-zone[hidden]{display:none}.effect-discard-zone.dragover{background:rgba(90,62,0,.94);outline:4px solid #ffd54a}.effect-discard-zone span{font-size:8px;color:#fff;margin-top:5px}
+.hero-discard-btn{position:absolute;right:2.2%;bottom:16%;width:8.5%;aspect-ratio:2.5/3.5;border:2px dashed rgba(255,255,255,.55);border-radius:9px;background:rgba(6,25,13,.72);color:#fff;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:8px;font-weight:900;letter-spacing:.05em}.hero-discard-btn b{font-size:22px;color:var(--green);margin-top:3px}
+.battle-play-hand.pending-discard .play-card{cursor:grab}.pending-lock{opacity:.55;pointer-events:none}.effect-prompt{color:#ffd54a!important}
+/* V3.8 — played Plays stay in their Battle Zone, solitaire-style */
+.played-stack-layer{position:absolute;inset:0;z-index:3;pointer-events:none}
+.played-stack{position:absolute;width:9.4%;height:38%;pointer-events:none}
+.played-stack .play-card{position:absolute;left:0;width:100%;height:72%;min-height:0;padding:5px;border-radius:6px;font-size:7px;box-sizing:border-box;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,.55)}
+.played-stack .play-card .play-top{font-size:7px}.played-stack .play-card .cost{font-size:10px}.played-stack .play-card .play-effect{font-size:6px;padding:4px 1px}.played-stack .play-card .play-footer{font-size:5px}
+.p2-stack{opacity:.78;transform:scale(.78);transform-origin:top left}
+
+/* V3.8 — current player owns the main drop spot; opponent sits above. */
+.battle-card-wrap.turn-main-hero{top:12.3%!important;transform:none!important;width:9.4%!important;height:24%!important;opacity:1}
+.battle-card-wrap.turn-opponent-hero{top:2.4%!important;transform:scale(.68)!important;transform-origin:top center!important;width:9.4%!important;height:20%!important;opacity:.9}
+.battle-card-wrap.turn-main-hero>span{color:var(--green);font-size:11px}
+.battle-card-wrap.turn-opponent-hero>span{font-size:9px}
+.battle-card-wrap.turn-main-hero.dragover .revealed-hero{outline:5px solid var(--green);outline-offset:4px;box-shadow:0 0 24px rgba(142,227,61,.8)}
+.battle-play-hand .play-card{cursor:grab}
+.battle-play-hand .play-card:active{cursor:grabbing}
+
+/* V3.9: visibly flag temporary Dog Gone Inflation costs. */
+.play-card .cost.inflated-cost{outline:2px solid currentColor;outline-offset:2px}
+/* V3.11 home screen branding + named generated Heroes */
+.home-brand{display:flex;align-items:center;gap:24px;margin-bottom:20px}.alpha-logo{width:190px;max-height:130px;object-fit:contain;border-radius:14px;background:#000}.home-brand h1{margin:.15em 0}.generator-controls{flex-wrap:wrap}.generator-controls select{min-width:170px}.hero .hero-name{font-size:11px;font-weight:1000;line-height:1.05;text-align:center;padding:3px 4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.revealed-hero .hero-name{font-size:9px;font-weight:1000;text-align:center;line-height:1.05;margin-top:2px}@media(max-width:700px){.home-brand{flex-direction:column;text-align:center}.alpha-logo{width:150px}}
+/* V3.12 — cleaner home screen and true card proportions */
+#setup .setup-card{width:min(1040px,calc(100% - 32px));padding:28px 34px;margin:24px auto;background:linear-gradient(180deg,#0b2b17,#061b0e)}
+#setup .home-brand{display:grid;grid-template-columns:130px 1fr;gap:24px;align-items:center;margin-bottom:22px}
+#setup .alpha-logo{width:130px;height:130px;max-height:none;border-radius:18px}
+#setup .home-brand h1{font-size:clamp(34px,4.4vw,58px);line-height:1.02;margin:4px 0 8px}
+#setup .generator-panel{grid-template-columns:230px 1fr;gap:18px 28px;padding:22px;margin:20px 0}
+#setup .generator-panel>div:first-child h2{font-size:25px;line-height:1.08;margin:5px 0}
+#setup .generator-panel>div:first-child .small{line-height:1.45}
+#setup .generator-controls{display:grid;grid-template-columns:repeat(3,minmax(160px,1fr));gap:10px;align-items:center}
+#setup .generator-controls button{margin:0;min-height:44px}
+#setup .generator-controls select{width:100%;min-width:0}
+.hero .hero-name,.revealed-hero .hero-name{display:none!important}
+/* Every visible Play uses the same 2.5 x 3.5 card ratio as Heroes. */
+.play-card{width:150px;min-height:0;height:auto;aspect-ratio:2.5/3.5;padding:10px}
+.battle-play-hand{left:25%;right:25%;bottom:5%;height:auto;align-items:flex-end}
+.battle-play-hand .play-card{width:clamp(88px,8.2vw,112px);height:auto;min-height:0;aspect-ratio:2.5/3.5;flex:0 0 auto}
+.choice-cards .play-card{width:130px;min-height:0;height:auto;aspect-ratio:2.5/3.5}
+.played-stack .play-card{width:100%;height:auto;aspect-ratio:2.5/3.5}
+/* Tighten battle-zone alignment to the printed seven-card row. */
+.battle-card-wrap.player-hero-drop,.battle-card-wrap.opponent-hero{left:11.25%;width:9.15%;height:23.6%}
+.battle-card-wrap.turn-main-hero{left:11.25%!important;width:9.15%!important;height:23.6%!important}
+.battle-card-wrap.turn-opponent-hero{left:11.25%!important;width:9.15%!important}
+@media(max-width:760px){#setup .home-brand{grid-template-columns:1fr;text-align:center}#setup .alpha-logo{margin:auto}#setup .generator-panel{grid-template-columns:1fr}#setup .generator-controls{grid-template-columns:1fr}}
+
+/* V3.13 — gameplay cleanup: exact card proportions, contained copy, battle stacks, visible randomizer */
+.play-card{box-sizing:border-box;overflow:hidden;min-width:0}
+.play-card .play-top{flex:0 0 auto;line-height:1.05;min-width:0}
+.play-card .play-top strong{min-width:0;overflow-wrap:anywhere;hyphens:auto}
+.play-card .cost{flex:0 0 auto;white-space:nowrap}
+.play-card .play-effect{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;align-items:center;justify-content:center;line-height:1.16;margin:0;padding:5px 2px;overflow-wrap:anywhere}
+.play-card .play-footer{flex:0 0 auto;padding-top:5px}
+.battle-play-hand{align-items:flex-end;gap:10px}
+.battle-play-hand .play-card{width:clamp(90px,8.3vw,114px)!important;height:auto!important;aspect-ratio:2.5/3.5!important;padding:7px!important}
+.battle-play-hand .play-card .play-effect{padding:4px 1px}
+.played-stack{height:46%!important;z-index:5}
+.played-stack .play-card{width:100%!important;height:auto!important;aspect-ratio:2.5/3.5!important;padding:5px!important}
+.played-stack .play-card .play-effect{font-size:6px!important;padding:2px 0!important}
+.played-stack .play-card .play-footer{font-size:5px!important;padding-top:2px!important}
+.battle-card-wrap.player-hero-drop,.battle-card-wrap.opponent-hero,.battle-card-wrap.turn-main-hero,.battle-card-wrap.turn-opponent-hero{transition:left .18s ease,top .18s ease,transform .18s ease}
+.randomizer-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:200;display:grid;place-items:center;padding:20px}
+.randomizer-modal[hidden]{display:none}
+.randomizer-card{width:min(360px,92vw);background:#071b0e;border:2px solid var(--green);border-radius:18px;padding:24px;text-align:center;box-shadow:0 18px 60px rgba(0,0,0,.55)}
+.randomizer-card h2{margin:4px 0 8px;font-size:26px}.randomizer-card p{color:var(--muted)}
+.randomizer-visual{width:132px;height:132px;margin:16px auto;display:grid;place-items:center;border:3px solid rgba(255,255,255,.8);border-radius:22px;background:#102b18;color:#fff;font-size:84px;font-weight:1000;line-height:1}
+.randomizer-visual.coin{border-radius:50%;font-size:28px;letter-spacing:.04em;color:var(--green)}
+.randomizer-visual.rolling{animation:randomizer-pop .16s linear infinite alternate}
+@keyframes randomizer-pop{from{transform:scale(.96) rotate(-2deg)}to{transform:scale(1.04) rotate(2deg)}}
+@media(prefers-reduced-motion:reduce){.randomizer-visual.rolling{animation:none}}
+/* V3.14 — Normal AI scrimmage */
+.computer-panel{display:grid;grid-template-columns:minmax(240px,.8fr) minmax(420px,1.2fr);gap:24px;align-items:center;margin:20px 0;padding:22px;border:1px solid rgba(126,255,45,.28);border-radius:18px;background:rgba(3,30,14,.48)}
+.computer-controls{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:center}.computer-controls select,.computer-controls button{min-height:48px}
+.ai-thinking{display:inline-flex;gap:8px;align-items:center;font-weight:800}.ai-thinking:after{content:'•••';letter-spacing:3px;animation:aiDots 1.2s steps(4,end) infinite}@keyframes aiDots{50%{opacity:.35}}
+@media(max-width:800px){.computer-panel{grid-template-columns:1fr}.computer-controls{grid-template-columns:1fr}}
+
+/* V3.16 simplified match setup */
+.simple-generator{display:grid;gap:18px;padding:22px;border:1px solid rgba(255,255,255,.13);border-radius:18px;background:rgba(0,0,0,.28)}
+.simple-generator-head h2{margin:3px 0 5px}.simple-player-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.simple-player-card{padding:18px;border-radius:14px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1)}.simple-player-card h2{margin:0 0 14px}.simple-player-card label{display:grid;gap:7px;margin-top:12px;font-weight:800}.simple-player-card select{width:100%;min-height:44px}.simple-match-actions{display:flex;gap:12px;justify-content:flex-end}.simple-match-actions button{min-width:190px}@media(max-width:720px){.simple-player-grid{grid-template-columns:1fr}.simple-match-actions{flex-direction:column}.simple-match-actions button{width:100%}}
+
+/* V3.17 — Alpha Labs custom playmat + exact seven-zone progression */
+.board-wrap,.battle-board{aspect-ratio:1600/900}
+.playmat,#placement .playmat,.battle-board .playmat{width:100%;height:100%;object-fit:contain}
+/* Printed Battle 1–7 rectangles in the supplied 1600x900 mat. */
+.zones{left:12.88%;right:8.94%;top:12.65%;height:25.85%;grid-template-columns:repeat(7,1fr);gap:.15%}
+.zone{border-color:transparent;border-radius:10px;align-items:stretch;padding:0}
+.zone-label{display:none}
+.zone.dragover{background:rgba(142,227,61,.18);outline:3px solid rgba(142,227,61,.85);outline-offset:-3px}
+.zone .hero{width:100%;max-width:none;height:100%;aspect-ratio:auto;border-radius:9px}
+/* Active hero/stack geometry uses the same printed slot footprint. Inline left now controls Battle 1→7. */
+.battle-card-wrap.player-hero-drop,.battle-card-wrap.opponent-hero,.battle-card-wrap.turn-main-hero,.battle-card-wrap.turn-opponent-hero{
+  width:10.72%!important;height:25.85%!important;left:auto!important;top:12.65%;padding-top:0;justify-content:flex-start
+}
+.battle-card-wrap.player-hero-drop .face-down,.battle-card-wrap.player-hero-drop .revealed-hero,
+.battle-card-wrap.opponent-hero .face-down,.battle-card-wrap.opponent-hero .revealed-hero{
+  width:100%;height:100%;aspect-ratio:auto;border-radius:9px
+}
+.battle-card-wrap>span{display:none}
+.battle-card-wrap.turn-main-hero{top:12.65%!important;transform:none!important;opacity:1!important}
+.battle-card-wrap.turn-opponent-hero{top:3.5%!important;transform:scale(.66)!important;transform-origin:top center!important;height:25.85%!important;opacity:.92!important}
+.played-stack{width:10.72%!important}
+/* Hand remains clear of the printed Battle row. */
+.battle-play-hand{bottom:4.5%}
+/* V3.18 — optional custom Play deck upload */
+.custom-deck-upload{margin-top:10px;padding:10px;border:1px dashed rgba(255,255,255,.28);border-radius:10px;background:rgba(0,0,0,.18)}
+.custom-deck-upload input[type=file]{display:block;width:100%;margin-top:7px;font-size:13px}
+.upload-note{display:block;margin-top:6px;font-size:12px;opacity:.75;line-height:1.3}
+
+/* V3.19 — best-of-3 series scoreboard */
+.series-score{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;margin-bottom:10px;border:1px solid rgba(140,255,55,.35);border-radius:12px;background:rgba(15,35,10,.7)}
+.series-score .eyebrow{margin:0 0 2px}.series-score strong{font-size:14px}.series-numbers{display:grid;grid-template-columns:auto 24px auto 24px auto;align-items:center;gap:5px;font-size:11px}.series-numbers b{font-size:24px;text-align:center;color:#b7ff4a}.series-numbers i{font-style:normal;text-align:center;opacity:.65}
+
+
+/* V3.21 — private computer hand / Bench */
+.cpu-private-zone{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;color:#d7e8d9;font-size:12px;letter-spacing:.04em}
+.cpu-card-backs{display:flex;justify-content:center;gap:5px;max-width:100%;overflow:hidden;padding:2px 4px}
+.cpu-card-back{width:42px;height:59px;border-radius:5px;border:1px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;letter-spacing:.08em;box-shadow:0 3px 8px rgba(0,0,0,.32)}
+.cpu-card-back.play-back{background:linear-gradient(145deg,#3d185c,#171025);color:#caa9e8}
+.cpu-card-back.hero-back{background:linear-gradient(145deg,#7b1717,#271010);color:#efb0a6}
+
+
+/* V3.25 — Alpha Labs setup selects */
+#setup select{
+  -webkit-appearance:none;appearance:none;
+  color:#f4fff1;
+  background-color:#071b0e;
+  background-image:linear-gradient(45deg,transparent 50%,#8ee33d 50%),linear-gradient(135deg,#8ee33d 50%,transparent 50%),linear-gradient(180deg,rgba(142,227,61,.08),rgba(0,0,0,0));
+  background-position:calc(100% - 18px) 50%,calc(100% - 12px) 50%,0 0;
+  background-size:6px 6px,6px 6px,100% 100%;
+  background-repeat:no-repeat;
+  border:1px solid rgba(142,227,61,.42);
+  border-radius:12px;
+  min-height:48px;
+  padding:0 42px 0 14px;
+  font-weight:850;
+  letter-spacing:.01em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 8px 20px rgba(0,0,0,.18);
+  cursor:pointer;
+  transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease,background-color .16s ease;
+}
+#setup select:hover{border-color:#8ee33d;background-color:#0a2512;box-shadow:0 0 0 3px rgba(142,227,61,.07),0 10px 24px rgba(0,0,0,.24)}
+#setup select:focus{outline:none;border-color:#8ee33d;box-shadow:0 0 0 3px rgba(142,227,61,.18),0 0 24px rgba(142,227,61,.10)}
+#setup select:active{transform:translateY(1px)}
+#setup select option{background:#071b0e;color:#f4fff1;font-weight:700}
+.simple-player-card label,.game-mode-label{color:#d9e8d9}
+.simple-player-card label:focus-within,.game-mode-label:focus-within{color:#8ee33d}
+
+.randomizer-visual.dice-duel{width:min(320px,90%);grid-template-columns:1fr auto 1fr;gap:14px;font-size:76px;padding:0 16px}
+.randomizer-visual.dice-duel b{font-size:18px;letter-spacing:.08em;color:var(--green)}
+
+/* V3.32 — new Alpha Labs playmat calibrated to 1728×972 */
+.board-wrap,.battle-board{aspect-ratio:1728/972}
+#placement .zones{left:6.75%;right:6.15%;top:8.85%;height:24.1%;grid-template-columns:repeat(7,1fr);gap:.35%}
+.battle-card-wrap.player-hero-drop,.battle-card-wrap.opponent-hero,.battle-card-wrap.turn-main-hero,.battle-card-wrap.turn-opponent-hero{width:11.55%!important;height:24.1%!important}
+.battle-card-wrap.turn-main-hero{top:8.85%!important}
+.battle-card-wrap.turn-opponent-hero{top:1.2%!important}
+.first-choice-card{max-width:520px;text-align:center}.first-choice-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:18px}.first-choice-actions button{min-width:180px}
+
+
+/* V3.33 — centered first/second prompt + exact playmat calibration (source asset 1630×965) */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:300;display:grid;place-items:center;padding:20px}
+.modal[hidden]{display:none}
+#firstChoiceModal .modal-card{margin:0;align-self:center;justify-self:center;width:min(520px,calc(100vw - 40px));max-height:none;overflow:visible;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+.board-wrap,.battle-board{aspect-ratio:1630/965}
+#placement .zones{left:10.92%;right:11.10%;top:12.12%;height:24.77%;grid-template-columns:repeat(7,1fr);gap:.10%}
+.zone .hero{width:88%;max-width:none;height:88%;aspect-ratio:2.5/3.5}
+.battle-card-wrap.player-hero-drop,.battle-card-wrap.opponent-hero,.battle-card-wrap.turn-main-hero,.battle-card-wrap.turn-opponent-hero{width:11.02%!important;height:24.77%!important}
+.battle-card-wrap.turn-main-hero{top:12.12%!important}
+
+/* V3.35 — main-screen Play Deck viewer */
+.playdeck-picker-row{display:flex;gap:10px;align-items:stretch;margin-top:6px}.playdeck-picker-row select{flex:1;min-width:0}.see-deck-btn{white-space:nowrap;padding:0 14px;min-height:44px;border:1px solid rgba(151,255,56,.48);border-radius:10px;background:#101510;color:#dfffca;font-weight:800;cursor:pointer}.see-deck-btn:hover,.see-deck-btn:focus-visible{border-color:#a7ff48;box-shadow:0 0 0 2px rgba(167,255,72,.14);outline:none}.deck-viewer-overlay[hidden]{display:none!important}.deck-viewer-overlay{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.72);backdrop-filter:blur(5px)}.deck-viewer-modal{width:min(680px,94vw);max-height:82vh;display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(167,255,72,.45);border-radius:18px;background:#0d100e;color:#f4f7f2;box-shadow:0 24px 80px rgba(0,0,0,.55)}.deck-viewer-head{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 22px 12px}.deck-viewer-head h2{margin:2px 0 0}.deck-viewer-close{width:44px;height:44px;border-radius:50%;border:1px solid #3d473d;background:#171c17;color:#fff;font-size:28px;line-height:1;cursor:pointer}.deck-viewer-meta{padding:0 22px 14px;color:#aeb8ae}.deck-viewer-table-wrap{overflow:auto;border-top:1px solid #293029}.deck-viewer-table{width:100%;border-collapse:collapse}.deck-viewer-table th,.deck-viewer-table td{padding:11px 22px;border-bottom:1px solid #242b24;text-align:left}.deck-viewer-table th{position:sticky;top:0;background:#151a15;color:#a7ff48;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.deck-viewer-table th:last-child,.deck-viewer-table td:last-child{width:110px;text-align:center;font-weight:900}.deck-viewer-table tbody tr:hover{background:#141914}@media(max-width:620px){.playdeck-picker-row{flex-direction:column}.see-deck-btn{width:100%}.deck-viewer-overlay{padding:10px}.deck-viewer-table th,.deck-viewer-table td{padding:10px 14px}}
+/* V3.40 Alpha AI */
+.simple-match-actions{flex-wrap:wrap}.alpha-ai-btn{border-color:#b9ff36}.alpha-ai-btn::after{content:' • SMART';font-size:.72em;opacity:.8}
+
+/* V3.42 — optional Alpha AI decision log */
+.alpha-log-toggle{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;opacity:.86}
+.alpha-log-toggle input{width:18px;height:18px}
+.alpha-decision-log{margin:8px 0 0;padding:8px 10px;border:1px solid rgba(126,255,76,.32);border-radius:10px;background:rgba(5,14,8,.9);font-size:12px;line-height:1.45}
+.alpha-decision-log summary{cursor:pointer;font-weight:800}
+.alpha-log-row{padding:4px 0;border-top:1px solid rgba(255,255,255,.08)}
+.alpha-log-row:first-child{border-top:0}
+/* V3.54 Glow Mixtape home */
+#setup{background:#050705 url('assets/mixtape-home.png') center top/cover fixed no-repeat;padding:18px 0 36px;min-height:100vh}
+#setup .setup-card.mixtape-home{position:relative;width:min(1050px,calc(100% - 24px));margin:0 auto;padding:30px 7% 54px;border:0;border-radius:34px;background:transparent;box-shadow:none;overflow:visible}
+#setup .mixtape-title{display:block;margin:0 0 18px;padding:0 0 0 1%;min-height:150px}
+#setup .mixtape-title h1{font-family:Impact,Haettenschweiler,'Arial Narrow Bold',sans-serif;font-style:italic;letter-spacing:.02em;font-size:clamp(46px,7vw,82px);line-height:.88;color:#080b08;text-shadow:2px 2px 0 rgba(142,227,61,.7);margin:0}
+#setup .mixtape-title .mixtape-subtitle{margin:10px 0 2px;color:#080b08;font-size:clamp(20px,3vw,34px);font-weight:1000;font-style:italic;letter-spacing:.04em}
+#setup .mixtape-title .eyebrow{color:#172017;margin:6px 0}
+#setup .simple-generator{width:min(700px,74%);margin:0 auto;padding:28px 34px 30px;gap:18px;border:3px solid #0a0d09;border-radius:16px 16px 28px 28px;background:linear-gradient(180deg,rgba(7,17,8,.91),rgba(4,9,4,.94));box-shadow:0 0 0 2px rgba(142,227,61,.45),0 20px 50px rgba(0,0,0,.42);clip-path:polygon(8% 0,92% 0,100% 100%,0 100%)}
+#setup .simple-generator>*{clip-path:none}
+#setup .simple-generator-head{padding:0 5%}
+#setup .simple-generator-head .eyebrow{font-size:14px}
+#setup .game-mode-label{display:grid;gap:7px;font-weight:1000;letter-spacing:.06em}
+#setup .simple-player-grid{grid-template-columns:1fr 1fr;gap:14px;padding:0 3%}
+#setup .simple-player-card{background:rgba(0,0,0,.42);border:1px solid rgba(184,255,60,.36);box-shadow:inset 0 0 20px rgba(142,227,61,.04)}
+#setup .simple-player-card h2{color:#baff42;text-transform:uppercase;font-size:20px;letter-spacing:.03em}
+#setup .alpha-opponent-card{border-color:rgba(190,255,55,.7)}
+#setup .ai-deck-note{font-size:11px;line-height:1.3;color:#b8c7b8;margin:-7px 0 8px}
+#setup select,#setup input[type=file]{background:#070b08;color:#fff;border:1px solid #91e83e}
+#setup .see-deck-btn{background:#101711;color:#fff;border-color:#91e83e}
+#setup .simple-match-actions{justify-content:center;padding:0 4%}
+#setup .simple-match-actions button{min-width:220px;text-transform:uppercase;letter-spacing:.04em}
+#setup .simple-match-actions .primary{background:#a7ff2d;box-shadow:0 0 22px rgba(166,255,45,.38)}
+#setup #simpleSetupStatus,#setup .alpha-log-toggle{margin-left:5%;margin-right:5%}
+#setup #startBtn{display:none}
+@media(max-width:760px){#setup{background-size:auto 100%;background-position:center top}#setup .setup-card.mixtape-home{padding:22px 3% 40px}#setup .mixtape-title{min-height:120px;padding-left:4%}#setup .simple-generator{width:92%;padding:24px 18px;clip-path:polygon(5% 0,95% 0,100% 100%,0 100%)}#setup .simple-player-grid{grid-template-columns:1fr}}
+
+/* V3.56 — deployed-screen correction: artwork is the frame, setup lives inside the trapezoid */
+#setup{padding:0;min-height:100vh;background:#050705;display:none;overflow:auto}
+#setup.active{display:flex;align-items:flex-start;justify-content:center}
+#setup .setup-card.mixtape-home{width:min(1180px,100vw);min-height:min(100vh,980px);margin:0 auto;padding:0 0 32px;border-radius:0;background:url('assets/mixtape-home.png') center top/100% auto no-repeat;position:relative}
+/* image already contains the Alpha Labs / Playmaker Demo branding */
+#setup .mixtape-title{height:clamp(155px,20vw,235px);min-height:0;margin:0;visibility:hidden;pointer-events:none}
+#setup .simple-generator{width:66%;max-width:760px;margin:0 auto;padding:20px 30px 22px;gap:12px;clip-path:polygon(7% 0,93% 0,100% 100%,0 100%);border:2px solid rgba(7,10,7,.9);border-radius:10px 10px 24px 24px;background:linear-gradient(180deg,rgba(4,12,5,.83),rgba(2,7,3,.9));box-shadow:0 0 0 2px rgba(151,238,50,.25),0 12px 32px rgba(0,0,0,.34)}
+#setup .simple-generator-head{padding:0 4%}
+#setup .simple-generator-head .eyebrow{margin:0 0 5px}
+#setup .game-mode-label{gap:4px;font-size:12px}
+#setup #gameModeDescription{margin:5px 0 0;font-size:11px;line-height:1.25;max-width:none}
+#setup .simple-player-grid{gap:10px;padding:0 2%}
+#setup .simple-player-card{padding:13px 14px;border-radius:10px}
+#setup .simple-player-card h2{font-size:16px;margin:0 0 4px}
+#setup .simple-player-card label{margin:7px 0;font-size:12px}
+#setup .ai-deck-note{font-size:9px;margin:-1px 0 5px}
+#setup select{min-height:38px;padding:7px 34px 7px 11px;font-size:12px}
+#setup .playdeck-picker-row{grid-template-columns:minmax(0,1fr) auto;gap:6px}
+#setup .see-deck-btn{min-height:38px;padding:0 10px;font-size:11px;white-space:nowrap}
+#setup .custom-deck-upload{font-size:10px!important}
+#setup input[type=file]{padding:6px;font-size:10px;margin-top:4px}
+#setup .upload-note{font-size:9px}
+#setup .simple-match-actions{padding:0 3%;gap:8px;margin-top:0}
+#setup .simple-match-actions button{min-width:0;flex:1;min-height:42px;margin:0;font-size:12px}
+#setup #simpleSetupStatus{font-size:10px;margin:0 5%}
+#setup .alpha-log-toggle{font-size:10px;margin:0 5%}
+#setup .error{font-size:11px;width:66%;margin:4px auto}
+@media(min-width:900px) and (max-height:950px){#setup .setup-card.mixtape-home{width:min(1040px,100vw)}#setup .mixtape-title{height:175px}#setup .simple-generator{width:64%;padding-top:15px;padding-bottom:17px}}
+@media(max-width:760px){#setup .setup-card.mixtape-home{width:100%;background-size:cover;background-position:center top;min-height:100vh}#setup .mixtape-title{height:145px}#setup .simple-generator{width:88%;padding:18px 14px;clip-path:polygon(5% 0,95% 0,100% 100%,0 100%)}#setup .simple-player-grid{grid-template-columns:1fr}#setup .simple-match-actions{flex-direction:column}#setup .error{width:88%}}
+
+/* V3.61 optional discard completion */
+.effect-done-btn{margin-top:6px;padding:5px 9px;border:1px solid #9cff2e;border-radius:7px;background:#07140a;color:#b8ff59;font-weight:900;font-size:10px;cursor:pointer}.effect-done-btn:hover{background:#17351b}
