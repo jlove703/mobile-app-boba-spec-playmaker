@@ -1,0 +1,11 @@
+Alpha Labs Playmaker Mobile V3.3
+
+Portrait updates:
+- Bench heroes shown only in the right-side dock, not duplicated below.
+- All Plays displayed in one horizontal overlapping hand, with responsive spacing as card count changes.
+- Card names, HD costs, and effect descriptions remain on the cards.
+- Tap to select and raise a Play, tap again to run using existing logic.
+- No numbered selectors or separate description panel.
+- Desktop and game engine preserved from V3.2.1.
+
+Deploy contents with index.html at root. Test on a real phone before relying on this build.
