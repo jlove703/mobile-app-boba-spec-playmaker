@@ -1,0 +1,11 @@
+Alpha Labs Playmaker Mobile V3.2
+Portrait changes:
+- Smaller battle heroes and used-play stacks
+- Live bench heroes on right, compact discard counters
+- Overlapping hand of Play cards, descriptions retained
+- Tap Play once to raise/select; tap again to run via existing game logic
+- No "tap card to bring forward" instruction
+- Original desktop game, AI and rules files preserved
+
+Deploy the ZIP contents with index.html at root.
+Note: portrait interaction needs testing on a real iPhone before production.
