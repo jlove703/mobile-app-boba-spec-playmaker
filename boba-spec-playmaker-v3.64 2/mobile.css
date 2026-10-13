@@ -1,0 +1,89 @@
+/* Mobile-first adaptation layered after the original desktop stylesheet. */
+html{ -webkit-text-size-adjust:100%; }
+button,select,input{touch-action:manipulation}
+.mobile-selected{outline:3px solid #baff42!important;outline-offset:2px;box-shadow:0 0 16px #9cff4b88!important}
+#mobileHint{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:20000;background:#101e12;color:#d9ffad;border:1px solid #a7ff48;border-radius:14px;padding:11px 16px;max-width:92vw;text-align:center;font-size:13px;font-weight:800;box-shadow:0 8px 30px #0009;pointer-events:none}
+#mobileHint[hidden]{display:none}
+@media(max-width:820px), (pointer:coarse){
+ body{overflow-x:hidden;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+ .screen{min-height:100dvh}
+ button,select,input[type=file]{min-height:44px}
+ #setup .setup-card.mixtape-home{background-size:100% auto;background-position:center top;min-height:100dvh;padding-bottom:30px}
+ #setup .mixtape-title{height:clamp(95px,20vw,170px)}
+ #setup .simple-generator{width:min(94%,650px);clip-path:none;border-radius:18px;padding:16px;gap:12px;background:rgba(3,13,5,.94)}
+ #setup .simple-player-grid{grid-template-columns:1fr;gap:10px;padding:0}
+ #setup .simple-player-card{padding:12px}
+ #setup .simple-match-actions{display:grid;grid-template-columns:1fr;gap:8px;padding:0}
+ #setup .simple-match-actions button{width:100%;margin:0;min-height:48px}
+ #setup .playdeck-picker-row{display:flex;flex-wrap:wrap}
+ #setup .playdeck-picker-row select{flex:1 1 160px}
+ #setup .see-deck-btn{flex:0 0 auto}
+ #placement .topbar,.topbar{position:relative;gap:8px;padding:9px 12px}
+ .topbar .stats{font-size:11px;gap:9px;flex-wrap:wrap}
+ .privacy-banner{font-size:10px;padding:5px}
+ #placement .board-wrap{width:100%;aspect-ratio:1630/965!important;min-height:0;flex:0 0 auto}
+ #placement .zones{top:12.12%;height:24.77%}
+ #placement .zone{border-width:1px;min-width:0}
+ #placement .zone .hero{width:94%;height:90%;border-width:1px;border-radius:4px}
+ #placement .zone .hero .power{font-size:clamp(8px,2.3vw,22px)}
+ #placement .zone .hero .weapon{font-size:clamp(5px,1.3vw,11px);margin-top:2px}
+ #placement .instruction{padding:9px 12px;font-size:12px;line-height:1.35}
+ #placement .instruction::after{content:' On mobile: tap a Hero, then tap its battle slot. Tap a placed Hero to return it to your hand.'}
+ #placement .hand{height:auto;min-height:104px;overflow-x:auto;flex-wrap:nowrap;justify-content:flex-start;gap:9px;padding:8px 12px 12px;scroll-snap-type:x proximity}
+ #placement .hand .hero{flex:0 0 67px;width:67px;height:94px;scroll-snap-align:center}
+ #placement .hand .hero .power{font-size:25px}
+ #placement .actions{display:flex;gap:8px;justify-content:center;padding:4px 10px 16px}
+ #placement .actions button{margin:0;flex:1;font-size:12px;padding:7px}
+ .opening-layout{min-width:0}
+ #openingHand .bench,#openingHand .play-hand{overflow-x:auto;justify-content:flex-start;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
+ .battle-shell{display:flex;flex-direction:column;min-height:100dvh}
+ .battle-main{width:100%;padding:8px 8px 16px}
+ .battle-header{display:flex;flex-direction:row;align-items:center;gap:8px;margin-bottom:6px}
+ .battle-header h1{font-size:clamp(18px,4vw,26px)}
+ .battle-header .eyebrow{font-size:9px}
+ .battle-header #phaseText{font-size:11px}
+ .dog-strip{gap:4px;justify-content:flex-end}
+ .dog-strip span{font-size:10px;padding:6px;border-radius:7px}
+ .battle-board{width:100%;max-width:none;aspect-ratio:1630/965!important;overflow:visible}
+ .battle-play-hand{left:15%;right:15%;height:32%;bottom:2%;gap:3px}
+ .battle-play-hand .play-card{width:clamp(49px,14vw,105px);min-width:0;padding:3px;border-radius:5px;touch-action:manipulation;cursor:pointer}
+ .battle-play-hand .play-card .play-top{font-size:clamp(6px,1.5vw,10px)}
+ .battle-play-hand .play-card .cost{font-size:clamp(9px,2.3vw,16px)}
+ .battle-play-hand .play-card .play-effect{font-size:clamp(5px,1.25vw,9px);padding:3px 1px;overflow:hidden}
+ .battle-play-hand .play-card .play-footer{font-size:7px}
+ .battle-card-wrap span{font-size:8px}
+ .scoreboard{border-left:0;border-top:1px solid var(--line);padding:10px 12px}
+ .scoreboard #scoreRows{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+ .scoreboard .score-row{display:flex;flex-direction:column;min-width:0;gap:3px;font-size:10px;padding:5px 2px}
+ .scoreboard .score-labels{display:none}
+ .scoreboard .score-head{margin-top:8px}
+ .scoreboard .battle-bench{flex-direction:row;overflow-x:auto;gap:7px}
+ .scoreboard .battle-bench .hero{min-width:70px;width:70px;height:86px;flex-direction:column;gap:2px}
+ .scoreboard .battle-bench .hero .power{font-size:24px}
+ .sub-panel{display:grid;grid-template-columns:1fr!important;padding:10px;gap:8px}
+ .sub-bench{overflow-x:auto;justify-content:flex-start}
+ .sub-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:7px}
+ .sub-actions button{flex:1;min-width:135px;margin:0}
+ .play-phase-help{font-size:12px;line-height:1.35;padding:6px}
+ .play-phase-help::after{content:' Mobile: tap a Play twice to run it.'}
+ .turn-controls button{min-width:0;width:min(100%,380px)}
+ .game-modal,.modal,.deck-viewer-overlay{padding:8px}
+ .modal-card,.deck-viewer-modal{max-height:calc(100dvh - 16px);width:100%;padding:14px}
+ .choice-cards{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start}
+ .choice-cards .play-card{flex:0 0 140px}
+ #effectDiscardZone{z-index:8}
+}
+@media(max-width:820px) and (orientation:landscape){
+ #setup .setup-card.mixtape-home{background-size:100% auto}
+ #setup .mixtape-title{height:clamp(90px,16vw,140px)}
+ #setup .simple-player-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #setup .simple-match-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #placement .hand{min-height:75px}
+ #placement .hand .hero{flex-basis:53px;width:53px;height:73px}
+ .battle-header{margin-bottom:3px}
+ .battle-board{max-width:calc((100dvh - 90px)*1.689);margin:auto}
+ .battle-play-hand .play-card{width:clamp(55px,10vw,100px)}
+}
+@media(min-width:821px) and (pointer:coarse){
+ .battle-shell{display:grid;grid-template-columns:minmax(0,1fr) 220px}
+}
