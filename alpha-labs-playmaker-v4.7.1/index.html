@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Alpha Labs Playmaker</title>
+<meta name="theme-color" content="#081b10" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Playmaker" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="apple-touch-icon" href="/icons/icon-192.png" />
+<link rel="icon" href="/icons/icon-192.png" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="mobile.css" />
+</head>
+<body>
+<a href="/_alpha_logout" id="alphaLogout" title="Sign out of private Alpha Labs Playmaker" aria-label="Sign out" style="position:fixed;right:8px;top:env(safe-area-inset-top, 0px);z-index:9999;color:#b7fb56;background:#0b2318d9;border:1px solid #3e6b43;border-radius:7px;padding:5px 8px;font:11px system-ui;text-decoration:none">Sign out</a>
+<main id="app">
+  <section id="setup" class="screen active">
+    <div class="setup-card mixtape-home">
+      <div class="home-brand mixtape-title"><div><h1>ALPHA LABS</h1><p class="mixtape-subtitle">PLAYMAKER DEMO</p><p class="eyebrow">V4.4</p></div></div>
+      <div class="simple-generator">
+        <div class="simple-generator-head"><p class="eyebrow">MATCH SETUP</p><label class="game-mode-label">GAME MODE<select id="simpleGameMode"><option value="spec">Spec</option><option value="lowball">Lowball</option><option value="apex">Apex</option><option value="specplus">Spec+</option></select></label><p id="gameModeDescription" class="sub small"></p></div>
+        <div class="simple-player-grid">
+          <section class="simple-player-card"><h2>Player 1</h2><label>Hero Deck Weapon<select id="simpleP1Weapon"></select></label><label>Play Deck<div class="playdeck-picker-row"><select id="simpleP1Play"></select><button id="simpleP1SeeDeck" class="see-deck-btn" type="button">See Play Deck</button></div></label><label id="simpleP1UploadWrap" class="custom-deck-upload" hidden>Upload Play Deck CSV<input id="simpleP1Upload" type="file" accept=".csv,text/csv"><span id="simpleP1UploadName" class="upload-note">Choose a Play Deck CSV.</span></label></section>
+          <section class="simple-player-card alpha-opponent-card"><h2>Player 2 / Alpha AI</h2><p class="ai-deck-note">This is the deck Alpha uses when you choose Scrim Alpha AI.</p><label>Hero Deck Weapon<select id="simpleP2Weapon"></select></label><label>Play Deck<div class="playdeck-picker-row"><select id="simpleP2Play"></select><button id="simpleP2SeeDeck" class="see-deck-btn" type="button">See Play Deck</button></div></label><label id="simpleP2UploadWrap" class="custom-deck-upload" hidden>Upload Play Deck CSV<input id="simpleP2Upload" type="file" accept=".csv,text/csv"><span id="simpleP2UploadName" class="upload-note">Choose a Play Deck CSV.</span></label></section>
+        </div>
+        <div class="simple-match-actions"><button id="simpleTwoPlayerBtn" class="secondary" type="button">Start 2 Player Match</button><button id="simpleScrimBtn" class="primary alpha-ai-btn" type="button">Challenge Alpha Labs</button></div>
+        <div id="simpleSetupStatus" class="status">Choose both decks, then start.</div><label class="alpha-log-toggle"><input id="alphaDecisionLogToggle" type="checkbox"> Show Alpha Decision Log (testing)</label>
+      </div>
+      <div class="legacy-generator" hidden>
+        <select id="genPlayer"><option value="0">Player 1</option><option value="1">Player 2</option></select><select id="genWeapon"></select><select id="genPlayDeck"></select><button id="generateDeckBtn"></button><button id="loadPresetBtn"></button><div id="generatorStatus"></div><div id="generatedPreview"></div>
+        <select id="cpuWeapon"></select><select id="cpuPlayDeck"></select><button id="cpuScrimBtn"></button><div id="cpuStatus"></div>
+        <input id="p1Heroes" type="file"><input id="p1Plays" type="file"><div id="p1Status"></div><input id="p2Heroes" type="file"><input id="p2Plays" type="file"><div id="p2Status"></div><button id="demoBtn"></button>
+      </div>
+      <button id="startBtn" class="primary" disabled>Shuffle & Deal Arena Heroes</button>
+      <div id="setupError" class="error" role="alert"></div>
+    </div>
+  </section>
+
+  <section id="placement" class="screen">
+    <div class="topbar">
+      <div><strong id="turnLabel">Player 1</strong> • Place your 7 Arena Heroes</div>
+      <div class="stats"><span>Hero Deck <b id="deckCount">53</b></span><span>Playbook <b>30</b></span><span>Hot Dogs <b>10</b></span></div>
+    </div>
+    
+    <div class="board-wrap">
+      <img src="assets/playmat.png" alt="Bo Jackson Battle Arena playmat" class="playmat" />
+      <div id="zones" class="zones" aria-label="Seven battle zones"></div>
+    </div>
+    <div class="placement-dock">
+    <div class="mobile-order-tools"><button type="button" id="mobileHighLow">High to Low</button><button type="button" id="mobileLowHigh">Low to High</button></div><div id="hand" class="hand" aria-label="Seven dealt Hero cards"></div>
+    <div class="actions">
+      <button id="resetPlacement" class="secondary">Return All to Hand</button>
+      <button id="lockBtn" class="primary" disabled>Lock Arena (0/7)</button>
+    </div></div>
+  </section>
+
+  <section id="handoff" class="screen">
+    <div class="setup-card center handoff-card">
+      <p class="eyebrow">PASS THE SCREEN</p>
+      <h1 id="handoffTitle">Player 2</h1>
+      <p id="handoffText" class="sub centered">Player 1's Arena is locked. Pass the device to Player 2 before continuing.</p>
+      <button id="handoffBtn" class="primary">I'm Player 2 • Continue</button>
+    </div>
+  </section>
+
+  <section id="openingHand" class="screen">
+    <div class="topbar">
+      <div><strong id="openingPlayer">Player 1</strong> • Opening Hand</div>
+      <div class="stats"><span>Hero Deck <b id="openingHeroCount">49</b></span><span>Playbook <b id="openingPlayCount">26</b></span><span>Hot Dogs <b>10</b></span></div>
+    </div>
+    
+    <div class="opening-layout">
+      <section class="tray-panel">
+        <div class="tray-heading"><div><p class="eyebrow">BENCH</p><h2>4 Heroes</h2></div><span>Available for substitution</span></div>
+        <div id="bench" class="bench"></div>
+      </section>
+      <section class="tray-panel">
+        <div class="tray-heading"><div><p class="eyebrow">PLAY HAND</p><h2>4 Plays</h2></div><span>Drawn from your uploaded Playbook</span></div>
+        <div id="playHand" class="play-hand"></div>
+      </section>
+    </div>
+    <div class="actions"><button id="openingDone" class="primary">I've Seen My Hand</button></div>
+  </section>
+
+  <section id="ready" class="screen" hidden aria-hidden="true">
+    <div class="setup-card center">
+      <p class="eyebrow">GAME SETUP COMPLETE</p>
+      <h1>Ready for Battle 1</h1>
+      <p class="sub centered">Both Arenas are locked. Each player has a private 4-Hero Bench, a 4-Play opening hand, and 10 Hot Dogs.</p>
+      <div class="summary-grid">
+        <div><b>Player 1</b><span>7 Arena Heroes</span><span>4 Bench Heroes</span><span>4 Plays in Hand</span><span>49 Heroes in Deck</span><span>26 Plays in Playbook</span><span>10 Hot Dogs</span></div>
+        <div><b>Player 2</b><span>7 Arena Heroes</span><span>4 Bench Heroes</span><span>4 Plays in Hand</span><span>49 Heroes in Deck</span><span>26 Plays in Playbook</span><span>10 Hot Dogs</span></div>
+      </div>
+      <button id="battleBtn" class="primary">Go to Battle 1</button>
+      <button id="restartBtn" class="secondary">Start Over</button>
+    </div>
+  </section>
+
+  <section id="battle" class="screen">
+    <div class="battle-shell">
+      <div class="battle-main">
+        <div class="battle-header">
+          <div class="v47-battle-meta"><h1 id="battleTitle">Battle 1</h1><p id="phaseText">Substitution Phase</p></div><img class="v47-logo" src="assets/alpha-logo-v47.png" alt="Alpha Labs">
+          <div class="dog-strip"><span><span class="dog-player-name">Player 1</span><b id="p1Dogs">10</b><span class="dog-count-label">Hot Dogs</span></span><span><span id="v47OpponentName" class="dog-player-name">JLove</span><b id="p2Dogs">10</b><span class="dog-count-label">Hot Dogs</span></span></div>
+        </div>
+        <div id="mobileBattleTracker" class="mobile-battle-tracker" aria-label="Seven battle progress slots"></div><div class="battle-board">
+          <img src="assets/playmat.png" alt="Bo Jackson Battle Arena playmat" class="playmat" />
+          <div id="p2BattleWrap" class="battle-card-wrap opponent-hero"><span>PLAYER 2</span><div id="p2ActiveHero" class="face-down">?</div></div>
+          <div id="p1BattleWrap" class="battle-card-wrap player-hero-drop"><span>PLAYER 1</span><div id="p1ActiveHero" class="face-down">?</div></div>
+          <div id="mobileBenchDock" class="mobile-bench-dock"><div class="mobile-bench-heading">YOUR SUBS</div><div id="mobileBenchCards"></div><div class="mobile-discard-summary"><button type="button" id="mobilePlayDiscardQuick">Plays <b id="mobilePlayDiscardN">0</b></button><button type="button" id="mobileHeroDiscardQuick">Heroes <b id="mobileHeroDiscardN">0</b></button></div></div><div id="mobileUsedP2" class="mobile-used-stack" aria-label="Player 2 used plays"></div><div id="mobileUsedP1" class="mobile-used-stack" aria-label="Player 1 used plays"></div><div id="playedStackLayer" class="played-stack-layer" aria-label="Played cards in battle zones"></div><div id="battlePlayHand" class="battle-play-hand" aria-label="Your Plays"></div>
+          <button id="discardPileBtn" class="discard-pile-btn" type="button" aria-label="View Play discard pile"><span>PLAY DISCARD</span><b id="discardCount">0</b></button><div id="effectDiscardZone" class="effect-discard-zone" hidden><strong>DISCARD HERE</strong><span id="effectDiscardHelp">Drag required cards here</span><button id="effectDoneBtn" class="effect-done-btn" type="button" hidden>DONE DISCARDING</button></div><button id="heroDiscardBtn" class="hero-discard-btn" type="button" aria-label="View Hero discard pile"><span>HERO DISCARD</span><b id="heroDiscardCount">0</b></button>
+        </div>
+        <div id="playPhaseHelp" class="play-phase-help" hidden>Drag a Play onto your Hero in the active Battle slot to run it.</div>
+        <div id="subPanel" class="sub-panel">
+          <div><p class="eyebrow">PRIVATE DECISION</p><h2 id="subPrompt">Player 1: Substitute Battle 1 Hero?</h2><p id="subHelp">A substitution costs 2 Hot Dogs. Your current Arena Hero stays face-down.</p></div>
+          <div id="subBench" class="sub-bench"></div>
+          <div class="sub-actions"><button id="noSubBtn" class="secondary">No Substitution</button><button id="confirmSubBtn" class="primary" disabled>Substitute Selected Hero · 2 HD</button></div>
+        </div>
+        <div id="battleMessage" class="battle-message" aria-live="polite"></div><details id="alphaDecisionLog" class="alpha-decision-log" hidden><summary>Alpha Decision Log</summary><div id="alphaDecisionLogBody"></div></details>
+        <div id="randomizerModal" class="randomizer-modal" hidden aria-modal="true" role="dialog" aria-labelledby="randomizerTitle">
+          <div class="randomizer-card">
+            <p class="eyebrow">RANDOMIZER</p><h2 id="randomizerTitle">Roll the die</h2>
+            <div id="randomizerVisual" class="randomizer-visual" aria-live="polite">⚄</div>
+            <p id="randomizerHelp">Click below to reveal the result.</p>
+            <button id="randomizerBtn" class="primary" type="button">ROLL DIE</button>
+          </div>
+        </div>
+        <div id="turnControls" class="turn-controls" hidden><button id="nextPlayerBtn" class="primary" type="button">Pass to Player 2</button></div>
+      </div>
+      <aside class="scoreboard">
+        <section id="battleBenchPanel" class="battle-bench-panel" hidden>
+          <p class="eyebrow">YOUR SUB HEROES</p><div id="battleBench" class="battle-bench"></div>
+        </section>
+        <div class="series-score"><div><p class="eyebrow">BEST OF 3</p><strong id="seriesGame">Game 1 of 3</strong></div><div class="series-numbers"><span>P1</span><b id="seriesP1">0</b><i>–</i><b id="seriesP2">0</b><span>P2</span></div></div>
+        <div class="score-head"><div><p class="eyebrow">BATTLE TRACKER • FIRST TO 4</p><h2>Game Score</h2></div><div class="match-score"><b id="p1Score">0</b><span>–</span><b id="p2Score">0</b></div></div>
+        <div class="score-labels"><span>Battle</span><span>P1</span><span>P2</span></div>
+        <div id="scoreRows"></div>
+        <div class="score-key">● Active &nbsp; ✓ Winner</div>
+      </aside>
+    </div>
+  </section>
+
+  <div id="firstChoiceModal" class="modal" hidden>
+    <div class="modal-card first-choice-card">
+      <p class="eyebrow">TURN ORDER</p>
+      <h2>Do you want to go first or second?</h2>
+      <p class="sub">Choose before the initial Hero draw. This sets the first Play opportunity in Battle 1.</p>
+      <div class="first-choice-actions">
+        <button id="goFirstBtn" class="primary" type="button">GO FIRST</button>
+        <button id="goSecondBtn" class="secondary" type="button">GO SECOND</button>
+      </div>
+    </div>
+  </div>
+</main>
+<div id="choiceModal" class="game-modal" hidden>
+  <div class="modal-card"><p class="eyebrow" id="choiceEyebrow">PLAY EFFECT</p><h2 id="choiceTitle">Choose a card</h2><p id="choiceText" class="sub"></p><div id="choiceCards" class="choice-cards"></div><div class="modal-actions"><button id="choiceCancel" class="secondary" type="button">Cancel</button></div></div>
+</div>
+<div id="discardModal" class="game-modal" hidden>
+  <div class="modal-card"><p class="eyebrow">PLAY DISCARD</p><h2 id="discardTitle">Discard Pile</h2><div id="discardCards" class="choice-cards"></div><div class="modal-actions"><button id="closeDiscard" class="secondary" type="button">Close</button></div></div>
+</div>
+<script src="assets/hero-master.js"></script>
+<div id="playDeckViewer" class="deck-viewer-overlay" hidden>
+  <section class="deck-viewer-modal" role="dialog" aria-modal="true" aria-labelledby="deckViewerTitle">
+    <div class="deck-viewer-head"><div><p class="eyebrow">PLAY DECK</p><h2 id="deckViewerTitle">Selected Play Deck</h2></div><button id="closeDeckViewer" class="deck-viewer-close" type="button" aria-label="Close Play Deck">×</button></div>
+    <div id="deckViewerMeta" class="deck-viewer-meta"></div>
+    <div class="deck-viewer-table-wrap"><table class="deck-viewer-table"><thead><tr><th>Play Name</th><th>HD Cost</th></tr></thead><tbody id="deckViewerBody"></tbody></table></div>
+  </section>
+</div>
+<script src="assets/play-presets.js"></script>
+<script src="assets/master-play-library.js"></script>
+<script src="app.js"></script>
+<div id="mobileUsedInspect" class="mobile-used-inspect" hidden role="dialog" aria-modal="true" aria-label="Used play details">
+  <div class="mobile-used-inspect-panel"><strong class="mobile-used-title"></strong><b class="mobile-used-cost"></b><p class="mobile-used-description"></p><button type="button" onclick="document.getElementById('mobileUsedInspect').hidden=true">Close</button></div>
+</div>
+<script src="mobile.js"></script>
+</body>
+</html>
